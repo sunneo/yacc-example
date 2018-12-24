@@ -2,6 +2,7 @@
 #define PARSER_TYPE_H
 #include "BaseExpr.h"
 #include "vector.h"
+#include "hashtable.h"
 typedef struct YYParamTypeCtx{
       Expr* expr;
       int intVal;
@@ -18,5 +19,6 @@ typedef struct Document{
    Expr* children;
    Vector* flattenStatements;
 }Document;
+
 
 #endif

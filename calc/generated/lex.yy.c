@@ -472,7 +472,7 @@ char *yytext;
 #line 1 "lexer.l"
 #line 2 "lexer.l"
 #include "BaseExpr.h"
-#include "parserType.h"
+#include "ParserStatus.h"
 #include "y.tab.h"
 #include <stdarg.h>
 #include <stdio.h>

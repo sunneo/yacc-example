@@ -1,18 +1,20 @@
 CC=gcc
 LEXER=flex
 PARSER=byacc
-CCFLAGS=-I Interfaces/Stream \
-        -I Interfaces/BaseObject \
-        -I Implements/Stream \
-        -I Implements/BaseExpr \
+CCFLAGS=-I include/Interfaces/Stream \
+        -I include/Interfaces/BaseObject \
+        -I include/Implements/Stream \
+        -I include/Implements/BaseExpr \
         -I ../libs/Vector/include \
+	-I ../libs/Hashtable.2/include \
         -I generated \
         -I ./ \
-	-ggdb
-SRC= Interfaces/Stream/IPrintStream.c \
-     Interfaces/BaseObject/IBaseObject.c \
-     Implements/Stream/FilePrintStream.c \
-     Implements/BaseExpr/BaseExpr.c \
+	-ggdb -Wno-pointer-to-int-cast -Wno-implicit-function-declaration
+SRC= src/Interfaces/Stream/IPrintStream.c \
+     src/Interfaces/BaseObject/IBaseObject.c \
+     src/Implements/Stream/FilePrintStream.c \
+     src/Implements/BaseExpr/BaseExpr.c \
+     ../libs/Hashtable.2/src/hashtable.c \
      ../libs/Vector/src/vector.c ../libs/Vector/src/vector_iter.c
      
 all: Main

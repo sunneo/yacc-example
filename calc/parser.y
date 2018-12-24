@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "FilePrintStream.h"
 #include "BaseExpr.h"
-#include "parserType.h"
+#include "ParserStatus.h"
 static IPrintStream* get_dumper(){
    static IPrintStream* ret = NULL;
    if(ret == NULL){
