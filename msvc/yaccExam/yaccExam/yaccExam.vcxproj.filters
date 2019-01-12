@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="原始程式檔">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="標頭檔">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="資源檔">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="原始程式檔\src">
+      <UniqueIdentifier>{dfb7f695-31cb-4b67-8121-71111e12a653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\src\Implements">
+      <UniqueIdentifier>{ff5f40a9-1080-4c43-a234-8f0f9700bb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\src\Interfaces">
+      <UniqueIdentifier>{8a7bec4a-e263-465d-b386-dfdfa48dcade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\src\Interfaces\BaseObject">
+      <UniqueIdentifier>{fea60ad6-c369-40ee-b6f9-337cfd97a23f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\src\Interfaces\Events">
+      <UniqueIdentifier>{cfc209cf-ffaf-45c4-8b3b-5ae2194a9f20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\src\Interfaces\Stream">
+      <UniqueIdentifier>{ca700ac2-2918-43a6-acfb-b01e634e7761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\src\Implements\BaseExpr">
+      <UniqueIdentifier>{0304cc5d-408e-4b31-b4a3-237acab90cf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\src\Implements\Stream">
+      <UniqueIdentifier>{f1db445f-6c02-49ff-9a21-214eb182ca64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="標頭檔\Implements">
+      <UniqueIdentifier>{dfc10ca0-e84c-43fe-b468-20a48b524325}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="標頭檔\Interfaces">
+      <UniqueIdentifier>{04713756-35e6-4855-a02b-dc69bcee8235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="標頭檔\Interfaces\BaseObject">
+      <UniqueIdentifier>{ee8e70e9-564a-45e2-b685-68511e6ee0eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="標頭檔\Interfaces\Events">
+      <UniqueIdentifier>{42b62c22-cc22-4ee8-83fe-fd794e403831}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="標頭檔\Interfaces\Stream">
+      <UniqueIdentifier>{68fbc0f1-9062-413c-95f7-966e9ae11159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="標頭檔\Implements\BaseExpr">
+      <UniqueIdentifier>{8ad98d55-e91b-45a9-83cf-6a8192d47628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="標頭檔\Implements\Stream">
+      <UniqueIdentifier>{b9f6b1ec-47e0-4a15-9495-53320089b3a9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\calc\parser.y">
+      <Filter>原始程式檔</Filter>
+    </None>
+    <None Include="..\..\..\calc\lexer.l">
+      <Filter>原始程式檔</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\calc\src\Interfaces\BaseObject\IBaseObject.c">
+      <Filter>原始程式檔\src\Interfaces\BaseObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\calc\src\Interfaces\Events\EventHandler.c">
+      <Filter>原始程式檔\src\Interfaces\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\calc\src\Interfaces\Stream\IPrintStream.c">
+      <Filter>原始程式檔\src\Interfaces\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\calc\src\Implements\BaseExpr\BaseExpr.c">
+      <Filter>原始程式檔\src\Implements\BaseExpr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\calc\src\Implements\Stream\FilePrintStream.c">
+      <Filter>原始程式檔\src\Implements\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\calc\Test.c">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\calc\include\Implements\BaseExpr\BaseExpr.h">
+      <Filter>標頭檔\Implements\BaseExpr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\calc\include\Implements\Stream\FilePrintStream.h">
+      <Filter>標頭檔\Implements\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\calc\include\Interfaces\BaseObject\IBaseObject.h">
+      <Filter>標頭檔\Interfaces\BaseObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\calc\include\Interfaces\Stream\IPrintStream.h">
+      <Filter>標頭檔\Interfaces\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\calc\include\Interfaces\Events\EventHandler.h">
+      <Filter>標頭檔\Interfaces\Events</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
