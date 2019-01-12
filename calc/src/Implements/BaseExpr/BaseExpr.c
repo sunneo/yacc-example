@@ -17,6 +17,9 @@ static const char* OP_STR[]={
 "EXPR_OP_NEGATIVE",
 "EXPR_OP_POSSITIVE"
 };
+#ifdef _WIN32
+#define snprintf sprintf_s
+#endif
 static IPrintStream* get_dumper(){
    static IPrintStream* ret = NULL;
    if(ret == NULL){
