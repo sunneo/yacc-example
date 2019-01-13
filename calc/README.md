@@ -12,7 +12,7 @@ the structure of this project is alike:
      * [IBaseObject.h][IBaseObject.h]
        * baseobject_dump([pthis][IBaseObject.h], [IPrintstream][IPrintStream.h])
    * Events/
-     * [EventHandler.h] [EventHandler.h]
+     * [EventHandler.h][EventHandler.h]
        * eventhandler_new
        * eventhandler_add([pthis][EventHandler.h], delegator)
        * eventhandler_add_function([pthis][EventHandler.h], function)
