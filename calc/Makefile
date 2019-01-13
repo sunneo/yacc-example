@@ -1,6 +1,6 @@
 CC=gcc
 LEXER=flex
-PARSER=byacc
+PARSER=bison
 CCFLAGS=-I include/Interfaces/Stream \
         -I include/Interfaces/BaseObject \
         -I include/Implements/Stream \
@@ -25,7 +25,8 @@ GEN_PARSER=generated/y.tab.c
 GEN_LEXER=generated/lex.yy.c
 
 $(GEN_PARSER): parser.y
-	$(PARSER) -P -d -o $(GEN_PARSER)  parser.y 
+	$(PARSER) -y -d parser.y 
+	mv y.tab.* generated
 
 $(GEN_LEXER): lexer.l
 	$(LEXER) --bison-bridge -o $(GEN_LEXER) lexer.l

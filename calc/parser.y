@@ -138,7 +138,7 @@ int main(int argc,char** argv){
    expr_destroy(doc.children);
    return ret;
 }
-void yyerror(char* s){
+void yyerror(Document* doc,char* s){
    fprintf(stderr,"%s\n",s);
 }
 int yywrap(){
