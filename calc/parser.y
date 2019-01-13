@@ -4,6 +4,9 @@
 #include "FilePrintStream.h"
 #include "BaseExpr.h"
 #include "ParserStatus.h"
+#define DEBUG 1
+void yyerror(Document*,char* s);
+
 static IPrintStream* get_dumper(){
    static IPrintStream* ret = NULL;
    if(ret == NULL){
@@ -11,95 +14,101 @@ static IPrintStream* get_dumper(){
    }
    return ret;
 }
-#define YYPARSE_PARAM_TYPE Document*
-#define YYPARSE_PARAM parserStatus
+
 #if defined(DEBUG) && DEBUG==1
 #define DebugOut(x) x
 #else
 #define DebugOut(...) 
 #endif
 %}
+%parse-param {Document* parserStatus}
+%lex-param {Document* parserStatus}
+%define api.pure full
 
 %start program
+
+
 %union{
+   Document doc;
    YYParamTypeCtx Ctx;
 }
 
-%right OP_ASSIGN 
-%left OP_ADD OP_MINUS
-%left OP_MUL OP_DIV OP_MOD
-%nonassoc U_MINUS U_PLUS
-%token DIGIT SYMBOL NEWLINE
+%type<doc> program 
+%type<Ctx> statements statement expr symbol digit 
+%right<Ctx> OP_ASSIGN 
+%left<Ctx> OP_ADD OP_MINUS
+%left<Ctx> OP_MUL OP_DIV OP_MOD
+%nonassoc<Ctx> U_MINUS U_PLUS
+%token<Ctx> DIGIT SYMBOL NEWLINE
 
 %%
-program: statements { YYPARSE_PARAM->children=$1.Ctx.expr; };
+program: statements { parserStatus->children=$1.expr; };
 
 statements: statement { 
-           vector_push_back( YYPARSE_PARAM->flattenStatements, $1.Ctx.expr);
-           YYPARSE_PARAM->children=$1.Ctx.expr;
-           $$.Ctx.expr=$1.Ctx.expr;
+           vector_push_back( parserStatus->flattenStatements, $1.expr);
+           parserStatus->children=$1.expr;
+           $$.expr=$1.expr;
         }
 	| statements statement {
-           expr_add_arguments($1.Ctx.expr,1,$2.Ctx.expr);
-           vector_push_back( YYPARSE_PARAM->flattenStatements, $1.Ctx.expr);
-           $$.Ctx.expr=$1.Ctx.expr;
+           vector_push_back( parserStatus->flattenStatements, $2.expr);
+           $$.expr=$1.expr;
         }
 	| statements error newline{
-           $$.Ctx.expr=$1.Ctx.expr;
+           $$.expr=$1.expr;
         }
 
 newline: NEWLINE
 	| newline NEWLINE
 	;
 
-statement: expr { DebugOut(expr_print($1.Ctx.expr,get_dumper())); DebugOut(iprintstream_write(get_dumper(),"\n",1)); }| statement newline;
+statement: expr { DebugOut(expr_print($1.expr,get_dumper())); DebugOut(iprintstream_write(get_dumper(),"\n",1)); }| statement newline;
 
 expr :expr OP_ASSIGN expr
         {
-          $$.Ctx.expr = expr_new_with(EXPR_OP_ASSIGN,"=",2, $1.Ctx.expr,$3.Ctx.expr);
-          $$.Ctx.expr->Line = $1.Ctx.line;
+          $$.expr = expr_new_with(EXPR_OP_ASSIGN,"=",2, $1.expr,$3.expr);
+          $$.expr->Line = $1.line;
         }  
       |expr OP_ADD expr
       {
-         $$.Ctx.expr = expr_new_with(EXPR_OP_ADD,"+",2, $1.Ctx.expr,$3.Ctx.expr);
-         $$.Ctx.expr->Line = $1.Ctx.expr->Line;
+         $$.expr = expr_new_with(EXPR_OP_ADD,"+",2, $1.expr,$3.expr);
+         $$.expr->Line = $1.expr->Line;
       }
       | expr OP_MINUS expr
        {
-         $$.Ctx.expr = expr_new_with(EXPR_OP_SUB,"-",2, $1.Ctx.expr,$3.Ctx.expr);
-         $$.Ctx.expr->Line = $1.Ctx.expr->Line;
+         $$.expr = expr_new_with(EXPR_OP_SUB,"-",2, $1.expr,$3.expr);
+         $$.expr->Line = $1.expr->Line;
        }
       | expr OP_MUL expr
        {
-         $$.Ctx.expr = expr_new_with(EXPR_OP_MUL,"*",2, $1.Ctx.expr,$3.Ctx.expr);
-         $$.Ctx.expr->Line = $1.Ctx.expr->Line;
+         $$.expr = expr_new_with(EXPR_OP_MUL,"*",2, $1.expr,$3.expr);
+         $$.expr->Line = $1.expr->Line;
        }
        | expr OP_DIV expr
         {
-         $$.Ctx.expr = expr_new_with(EXPR_OP_MUL,"*",2, $1.Ctx.expr,$3.Ctx.expr);
-         $$.Ctx.expr->Line = $1.Ctx.expr->Line;
+         $$.expr = expr_new_with(EXPR_OP_MUL,"*",2, $1.expr,$3.expr);
+         $$.expr->Line = $1.expr->Line;
        }
 	| OP_MINUS expr %prec U_MINUS
        {
-         $$.Ctx.expr = expr_new_with(EXPR_OP_NEGATIVE,"-",1, $2.Ctx.expr);
-         $$.Ctx.expr->Line = $1.Ctx.line;
+         $$.expr = expr_new_with(EXPR_OP_NEGATIVE,"-",1, $2.expr);
+         $$.expr->Line = $1.line;
        }
         | digit | symbol
 	;
 
 digit: DIGIT { 
-         $$.Ctx.expr = expr_new_digit($1.Ctx.intVal);
-         $$.Ctx.expr->Line = $1.Ctx.line;
-         $$.Ctx.expr->Col = $1.Ctx.col;
+         $$.expr = expr_new_digit($1.intVal);
+         $$.expr->Line = $1.line;
+         $$.expr->Col = $1.col;
      }
-     | digit newline { $$.Ctx.expr=$1.Ctx.expr; }
+     | digit newline { $$.expr=$1.expr; }
      ;
 symbol: SYMBOL { 
-         $$.Ctx.expr = expr_new_symbol($1.Ctx.stringVal);
-         $$.Ctx.expr->Line = $1.Ctx.line;
-         $$.Ctx.expr->Col = $1.Ctx.col;
+         $$.expr = expr_new_symbol($1.stringVal);
+         $$.expr->Line = $1.line;
+         $$.expr->Col = $1.col;
      }
-     | symbol newline { $$.Ctx.expr=$1.Ctx.expr; }
+     | symbol newline { $$.expr=$1.expr; }
 
      ;
 

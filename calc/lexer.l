@@ -4,7 +4,8 @@
 #include "y.tab.h"
 #include <stdarg.h>
 #include <stdio.h>
-#define DEBUG 0
+#define DEBUG 1
+
 static int yyline=1;
 static int yycol;
 static void __debugOut(const char* fmt,...){
@@ -29,75 +30,77 @@ static void __debugOut(const char* fmt,...){
 #  define debugOut(...) 
 #endif
 %}
+%option bison-bridge
+
 %%
 [ \t]	{          debugOut("SPACE '%s'\n",yytext); } 
-"\n" {        debugOut("NEWLINE\n",yytext);  return NEWLINE; }
+"\n"|"\r\n" {        debugOut("NEWLINE\n",yytext);  return NEWLINE; }
 [a-zA-Z\_][a-zA-Z0-9]* {
-        yylval->Ctx.stringVal=yytext;
-        yylval->Ctx.intVal=0;
-        yylval->Ctx.line=yyline;
-        yylval->Ctx.col = yycol;
+        yylvalctx.stringVal=yytext;
+        yylvalctx.intVal=0;
+        yylvalctx.line=yyline;
+        yylvalctx.col = yycol;
         debugOut("SYMBOL %s\n",yytext);
         return SYMBOL;
      }
 [1-9][0-9]* {
-     yylval->Ctx.stringVal=yytext;
-     sscanf(yytext,"%d",&yylval->Ctx.intVal);
-     yylval->Ctx.line=yyline;
-     yylval->Ctx.col = yycol;
+     yylvalctx.stringVal=yytext;
+     sscanf(yytext,"%d",&yylvalctx.intVal);
+     yylvalctx.line=yyline;
+     yylvalctx.col = yycol;
      debugOut("DIGIT %s\n",yytext);
      return DIGIT;
      }
 "+" {
-        yylval->Ctx.stringVal=yytext;
-        yylval->Ctx.intVal=0;
-        yylval->Ctx.line=yyline;
-        yylval->Ctx.col = yycol;
+        yylvalctx.stringVal=yytext;
+        yylvalctx.intVal=0;
+        yylvalctx.line=yyline;
+        yylvalctx.col = yycol;
         debugOut("OP_ADD %s\n",yytext);
 
         return OP_ADD;
     }
 "-" {
-        yylval->Ctx.stringVal=yytext;
-        yylval->Ctx.intVal=0;
-        yylval->Ctx.line=yyline;
-        yylval->Ctx.col = yycol;
+        yylvalctx.stringVal=yytext;
+        yylvalctx.intVal=0;
+        yylvalctx.line=yyline;
+        yylvalctx.col = yycol;
         debugOut("OP_MINUS %s\n",yytext);
 
         return OP_MINUS;
     }
 "*" {
-        yylval->Ctx.stringVal=yytext;
-        yylval->Ctx.intVal=0;
-        yylval->Ctx.line=yyline;
-        yylval->Ctx.col = yycol;
+        yylvalctx.stringVal=yytext;
+        yylvalctx.intVal=0;
+        yylvalctx.line=yyline;
+        yylvalctx.col = yycol;
         debugOut("OP_MUL %s\n",yytext);
 
         return OP_MUL;
     }
 "/" {
-        yylval->Ctx.stringVal=yytext;
-        yylval->Ctx.intVal=0;
-        yylval->Ctx.line=yyline;
-        yylval->Ctx.col = yycol;
+        yylvalctx.stringVal=yytext;
+        yylvalctx.intVal=0;
+        yylvalctx.line=yyline;
+        yylvalctx.col = yycol;
         debugOut("OP_DIV %s\n",yytext);
 
         return OP_DIV;
     }
 "%" {
-        yylval->Ctx.stringVal=yytext;
-        yylval->Ctx.intVal=0;
-        yylval->Ctx.line=yyline;
-        yylval->Ctx.col = yycol;
+        yylvalctx.stringVal=yytext;
+        yylvalctx.intVal=0;
+        yylvalctx.line=yyline;
+        yylvalctx.col = yycol;
         debugOut("OP_MOD %s\n",yytext);
 
         return OP_MOD;
     }
 "=" {
-        yylval->Ctx.stringVal=yytext;
-        yylval->Ctx.intVal=0;
-        yylval->Ctx.line=yyline;
-        yylval->Ctx.col = yycol;
+        yylvalctx.stringVal=yytext;
+        yylvalctx.intVal=0;
+        yylvalctx.line=yyline;
+        yylvalctx.col = yycol;
         debugOut("OP_ASSIGN %s\n",yytext);
         return OP_ASSIGN;
     }

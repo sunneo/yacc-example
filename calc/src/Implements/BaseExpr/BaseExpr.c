@@ -49,6 +49,7 @@ static void init_ibaseobject(IBaseObject* obj){
    obj->dump=impl_dump;
 }
 Expr* expr_new_digit(int val){
+  
    Expr* ret=NULL;
    char digit[12]="";
    snprintf(digit,12,"%d",val);

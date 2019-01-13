@@ -44,11 +44,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\calc\include\Implements\BaseExpr;..\..\..\calc\include\Implements\Stream;..\..\..\calc\include\Interfaces\BaseObject;..\..\..\calc\include\Interfaces\Events;..\..\..\calc\include\Interfaces\Stream;..\..\..\libs\vector\include;..\..\..\libs\hashtable.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\calc\include\Implements\BaseExpr;..\..\..\calc\include\Implements\Stream;..\..\..\calc\include\Interfaces\BaseObject;..\..\..\calc\include\Interfaces\Events;..\..\..\calc\include\Interfaces\Stream;..\..\..\libs\vector\include;..\..\..\libs\hashtable.2\include;..\..\..\calc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>YY_NO_UNISTD_H;YY_USE_CONST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)..\win_byacc.exe  -d -y $(SolutionDir)..\..\calc\parser.y -o $(SolutionDir)..\..\calc\generated\y.tab.c 
+$(SolutionDir)..\win_flex.exe -o$(SolutionDir)..\..\calc\generated\lex.yy.c $(SolutionDir)..\..\calc\lexer.l</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -69,19 +74,23 @@
     <None Include="..\..\..\calc\parser.y" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\calc\generated\lex.yy.c" />
+    <ClCompile Include="..\..\..\calc\generated\y.tab.c" />
     <ClCompile Include="..\..\..\calc\src\Implements\BaseExpr\BaseExpr.c" />
     <ClCompile Include="..\..\..\calc\src\Implements\Stream\FilePrintStream.c" />
     <ClCompile Include="..\..\..\calc\src\Interfaces\BaseObject\IBaseObject.c" />
     <ClCompile Include="..\..\..\calc\src\Interfaces\Events\EventHandler.c" />
     <ClCompile Include="..\..\..\calc\src\Interfaces\Stream\IPrintStream.c" />
-    <ClCompile Include="..\..\..\calc\Test.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\calc\generated\y.tab.h" />
     <ClInclude Include="..\..\..\calc\include\Implements\BaseExpr\BaseExpr.h" />
     <ClInclude Include="..\..\..\calc\include\Implements\Stream\FilePrintStream.h" />
     <ClInclude Include="..\..\..\calc\include\Interfaces\BaseObject\IBaseObject.h" />
     <ClInclude Include="..\..\..\calc\include\Interfaces\Events\EventHandler.h" />
     <ClInclude Include="..\..\..\calc\include\Interfaces\Stream\IPrintStream.h" />
+    <ClInclude Include="..\..\..\calc\ParserStatus.h" />
+    <ClInclude Include="unistd.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\hashtable\hashtable.vcxproj">

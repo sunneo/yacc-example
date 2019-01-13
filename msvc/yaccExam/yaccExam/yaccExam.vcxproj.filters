@@ -58,6 +58,9 @@
     <Filter Include="標頭檔\Implements\Stream">
       <UniqueIdentifier>{b9f6b1ec-47e0-4a15-9495-53320089b3a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="generated">
+      <UniqueIdentifier>{1e76b26a-3a86-4c1c-a736-5b22f8d5e749}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\calc\parser.y">
@@ -83,8 +86,11 @@
     <ClCompile Include="..\..\..\calc\src\Implements\Stream\FilePrintStream.c">
       <Filter>原始程式檔\src\Implements\Stream</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\calc\Test.c">
-      <Filter>原始程式檔</Filter>
+    <ClCompile Include="..\..\..\calc\generated\lex.yy.c">
+      <Filter>generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\calc\generated\y.tab.c">
+      <Filter>generated</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +108,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\calc\include\Interfaces\Events\EventHandler.h">
       <Filter>標頭檔\Interfaces\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\calc\generated\y.tab.h">
+      <Filter>generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\calc\ParserStatus.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="unistd.h">
+      <Filter>generated</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
