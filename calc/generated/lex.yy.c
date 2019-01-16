@@ -1,6 +1,6 @@
-#line 1 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\generated\\lex.yy.c"
+#line 2 "generated/lex.yy.c"
 
-#line 3 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\generated\\lex.yy.c"
+#line 4 "generated/lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -458,8 +458,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
-#line 2 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 1 "lexer.l"
+#line 2 "lexer.l"
 #include "BaseExpr.h"
 #include "ParserStatus.h"
 #include "y.tab.h"
@@ -490,8 +490,8 @@ static void __debugOut(const char* fmt,...){
 #else
 #  define debugOut(...) 
 #endif
-#line 493 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\generated\\lex.yy.c"
-#line 494 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\generated\\lex.yy.c"
+#line 494 "generated/lex.yy.c"
+#line 495 "generated/lex.yy.c"
 
 #define INITIAL 0
 
@@ -502,7 +502,7 @@ static void __debugOut(const char* fmt,...){
  */
 #include <unistd.h>
 #endif
-    
+
 #ifndef YY_EXTRA_TYPE
 #define YY_EXTRA_TYPE void *
 #endif
@@ -718,9 +718,9 @@ YY_DECL
 		}
 
 	{
-#line 35 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 35 "lexer.l"
 
-#line 723 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\generated\\lex.yy.c"
+#line 724 "generated/lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -779,18 +779,18 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 36 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 36 "lexer.l"
 {          debugOut("SPACE '%s'\n",yytext); } 
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 37 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 37 "lexer.l"
 {        debugOut("NEWLINE\n",yytext);  return NEWLINE; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 38 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 38 "lexer.l"
 {
         yylvalctx.stringVal=yytext;
         yylvalctx.intVal=0;
@@ -802,7 +802,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 46 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 46 "lexer.l"
 {
      yylvalctx.stringVal=yytext;
      sscanf(yytext,"%d",&yylvalctx.intVal);
@@ -814,7 +814,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 54 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 54 "lexer.l"
 {
         yylvalctx.stringVal=yytext;
         yylvalctx.intVal=0;
@@ -827,7 +827,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 63 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 63 "lexer.l"
 {
         yylvalctx.stringVal=yytext;
         yylvalctx.intVal=0;
@@ -840,7 +840,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 72 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 72 "lexer.l"
 {
         yylvalctx.stringVal=yytext;
         yylvalctx.intVal=0;
@@ -853,7 +853,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 81 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 81 "lexer.l"
 {
         yylvalctx.stringVal=yytext;
         yylvalctx.intVal=0;
@@ -866,7 +866,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 90 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 90 "lexer.l"
 {
         yylvalctx.stringVal=yytext;
         yylvalctx.intVal=0;
@@ -879,7 +879,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 99 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 99 "lexer.l"
 {
         yylvalctx.stringVal=yytext;
         yylvalctx.intVal=0;
@@ -891,16 +891,16 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 107 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 107 "lexer.l"
 {         debugOut("unknown %s\n",yytext);
     }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 110 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 110 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 903 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\generated\\lex.yy.c"
+#line 904 "generated/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1905,4 +1905,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 110 "D:\\Downloads\\SRC\\YaccExample\\yacc-example\\msvc\\yaccExam\\..\\..\\calc\\lexer.l"
+#line 110 "lexer.l"
